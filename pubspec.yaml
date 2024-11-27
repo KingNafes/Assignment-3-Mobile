@@ -1,0 +1,26 @@
+name: food_ordering_app
+description: A food ordering app using Flutter and Dart
+
+# The version of your app.
+version: 1.0.0+1
+
+# This section defines the environment constraints.
+environment:
+  sdk: ">=2.18.0 <4.0.0"  # Specify the range of Dart SDK versions compatible with your project.
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite: ^2.0.0+4  # SQLite plugin for database handling (latest version)
+  path: ^1.7.0        # Path plugin to help manage file paths for the database
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# To add assets, images, or fonts, you can define them here:
+# assets:
+#   - assets/images/
+
+flutter:
+  uses-material-design: true

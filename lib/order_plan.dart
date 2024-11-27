@@ -11,7 +11,7 @@ class OrderPlan {
     required this.selectedItemIds,
   });
 
-  // Convert an OrderPlan object into a map for storing in the database
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -21,7 +21,7 @@ class OrderPlan {
     };
   }
 
-  // Convert a map from the database into an OrderPlan object
+
   factory OrderPlan.fromMap(Map<String, dynamic> map) {
     return OrderPlan(
       id: map['id'],

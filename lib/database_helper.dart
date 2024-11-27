@@ -15,7 +15,6 @@ class DatabaseHelper {
     return _database!;
   }
 
-  // Initialize the database
   Future<Database> initDatabase() async {
     String path = join(await getDatabasesPath(), 'food_ordering.db');
     return await openDatabase(
@@ -29,7 +28,6 @@ class DatabaseHelper {
           'CREATE TABLE orders(id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, target_cost REAL, food_item_ids TEXT)',
         );
 
-        // Insert initial 20 food items
         for (int i = 1; i <= 20; i++) {
           await db.insert(
             'food_items',
@@ -41,7 +39,6 @@ class DatabaseHelper {
     );
   }
 
-  // Insert a new food item
   Future<void> insertFoodItem(String name, double cost) async {
     final db = await database;
     await db.insert(
@@ -51,19 +48,16 @@ class DatabaseHelper {
     );
   }
 
-  // Get all food items
   Future<List<Map<String, dynamic>>> getFoodItems() async {
     final db = await database;
     return await db.query('food_items');
   }
 
-  // Get food items under target cost
   Future<List<Map<String, dynamic>>> getFoodItemsUnderCost(double targetCost) async {
     final db = await database;
     return await db.query('food_items', where: 'cost <= ?', whereArgs: [targetCost]);
   }
 
-  // Save an order
   Future<void> saveOrder(String date, double targetCost, List<int> foodItemIds) async {
     final db = await database;
     await db.insert(
@@ -77,13 +71,11 @@ class DatabaseHelper {
     );
   }
 
-  // Query order plans by date
   Future<List<Map<String, dynamic>>> getOrderPlans(String date) async {
     final db = await database;
     return await db.query('orders', where: 'date = ?', whereArgs: [date]);
   }
 
-  // Update food item
   Future<void> updateFoodItem(int id, String name, double cost) async {
     final db = await database;
     await db.update(
@@ -94,7 +86,6 @@ class DatabaseHelper {
     );
   }
 
-  // Delete food item
   Future<void> deleteFoodItem(int id) async {
     final db = await database;
     await db.delete('food_items', where: 'id = ?', whereArgs: [id]);
